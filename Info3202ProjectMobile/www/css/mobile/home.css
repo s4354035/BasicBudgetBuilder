@@ -1,0 +1,50 @@
+nav{
+    list-style-type: none;
+    margin: 0;
+    height: 94px;
+    padding-right: 2px;
+    overflow: hidden;
+    width: 100%;
+    background-color: rgb(45, 75, 60);
+}
+.navbar-form{
+    margin: 0 ! important;
+}
+nav form {
+    width: 100%;
+    float: left;
+    clear: both;
+}
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 9px 16px 9px 16px;
+    text-decoration: none;
+}
+nav a:hover, nav a.active{
+    color: rgb(50, 111, 85);
+    background-color: rgb(220, 240, 230);
+    text-decoration:none;
+}
+.main-panel{
+    float:left;
+    clear: both;
+    width: 100%;
+    min-height: 400px;
+    background-color: rgb(220, 240, 230);
+}
+.stat-side-panel{
+    float: left;
+    clear: both;
+    width: 100%;
+    background-color: rgb(220, 240, 230);
+}
+.search-icon{
+    background-image: url("../../img/search-icon.png");
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    display: block;
+}

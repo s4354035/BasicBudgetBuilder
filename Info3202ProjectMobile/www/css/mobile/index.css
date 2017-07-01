@@ -1,0 +1,66 @@
+html{
+    background-color: rgb(220, 240, 230);
+}
+
+body{
+    margin:0;
+    height: 100%;
+}
+h1{
+    margin:0;
+    padding-bottom:4px;
+    font-size: 125%;
+}
+h3{
+    margin:0;
+    width: 100%;
+    font-size: 120%;
+    padding-bottom:4px;
+}
+.red{
+    color:#ff0000;
+}
+.header{
+    overflow: hidden;
+    height: 32px;
+    background-color: rgb(50, 50, 50);
+    text-align: left;
+    color: rgb(210, 210, 210);
+    font-size: 100%;
+}
+.title{
+    float:left;
+    padding: 7px 0 0 8px;
+}
+.header a{
+    padding: 7px 8px 0 0;
+    float: right;
+}
+.header a:link, .header a:visited{
+    color: rgb(220, 240, 230);
+}
+.header a:hover {
+    color: rgb(210, 210, 210);
+}
+.index-nav{
+    float: right;
+}
+.index-nav2{
+    float: right;
+}
+.footer{
+    clear: both;
+    position: relative;
+    height: 16px;
+    margin-top: -12px;
+    padding-top: 4px;
+    font-size: 50%;
+    background-color: rgb(50, 50, 50);
+    text-align: center;
+    color: rgb(210, 210, 210);
+}
+.body{
+    background-color: rgb(45, 75, 60);
+    width: 100%;
+    min-height:560px;
+}

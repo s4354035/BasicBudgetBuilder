@@ -1,0 +1,22 @@
+.reset-panel{
+    float: left;
+    margin: 130px 36px;
+    padding: 16px;
+    background-color: white;
+    color: rgb(50, 111, 85);
+}
+.reset-entry{
+    float:left;
+    padding-top:8px;
+    width: 100%;
+}
+.reset-button{
+    float:left;
+    text-align: right;
+    width: 100%;
+}
+.reset-error-message{
+    float:left;
+    width: 100%;
+    height: 84px;
+}

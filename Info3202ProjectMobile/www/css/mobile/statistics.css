@@ -1,0 +1,148 @@
+.summary-panel{
+    float:left;
+    margin-top: 1px;
+    width: 100%;
+    text-align: center;
+}
+.summary-panel div p {
+    margin: 0;
+    padding: 0;
+}
+.budget-summary{
+    float:left;
+    margin-bottom: 1px;
+    width: 100%;
+    padding: 4px 6px;
+    height: 24px;
+    color: white;
+    background-color: rgb(45, 75, 60);
+}
+.total-budget, .remaining-budget{
+    float:left;
+    padding-left: 6px;
+    width: 100%;
+    text-align: left;
+}
+.remainder-panel{
+    float:left;
+    width: 33%;
+    padding-top: 4px;
+    height: 70px;
+    color: white;
+    background-color: rgb(45, 75, 60);
+}
+.remainder-panel-center{
+    float:left;
+    margin: 0 1px 0 1px;
+    width: calc(34% - 2px);
+    padding-top: 4px;
+    height: 70px;
+    color: white;
+    background-color: rgb(45, 75, 60);
+}
+
+
+.interval-nav{
+    float:left;
+    width: 100%;
+    margin-top: 1px;
+    background-color: rgb(45, 75, 60);
+    text-align: center;
+    font-size: 80%;
+}
+.interval-nav-tab-left{
+    float:left;
+    margin: 0 0 1px;
+    width: calc(20% - 1px);
+    padding-top: 6px;
+    height: 24px;
+    color: white;
+    text-decoration: none;
+}
+.interval-nav-tab-left:hover, .interval-nav-tab-left.active{
+    margin: 0;
+    padding-top: 6px;
+    width: calc(20% - 1px);
+    height: 25px;
+    background-color: white;
+    color: rgb(50, 111, 85);
+    text-decoration: none;
+}
+.interval-nav-tab-inner, .interval-nav-tab-right{
+    float:left;
+    margin: 0 0 1px 1px;
+    padding-top: 6px;
+    width: calc(20% - 1px);
+    height: 24px;
+    color: white;
+    text-decoration: none;
+}
+.interval-nav-tab-inner:hover, .interval-nav-tab-right:hover, .interval-nav-tab-inner.active, .interval-nav-tab-right.active{
+    margin: 0 0 0 1px;
+    width: calc(20% - 1px);
+    padding-top: 6px;
+    height: 25px;
+    background-color: white;
+    color: rgb(50, 111, 85);
+    text-decoration: none;
+}
+.graph-panel-inner{
+    float:left;
+    padding: 16px;
+    width: 100%;
+    min-height: 200px;
+    color: rgb(50, 111, 85);
+    background-color: white;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: auto;
+}
+.graph-panel{
+    float:left;
+    width: 100%;
+    background-color: rgb(45, 75, 60);
+}
+.graph-nav{
+    float:left;
+    margin: 0;
+    width: 100%;
+    background-color: rgb(45, 75, 60);
+    text-align: center;
+    font-size: 80%;
+}
+.graph-nav-tab-left{
+    float:left;
+    margin: 1px 0 0 0;
+    width: calc(34% - 2px);
+    padding-top: 6px;
+    height: 24px;
+    color: white;
+    text-decoration: none;
+}
+.graph-nav-tab-left:hover, .graph-nav-tab-left.active{
+    margin: 0;
+    width: calc(34% - 2px);
+    height: 25px;
+    padding-top: 7px;
+    background-color: white;
+    color: rgb(50, 111, 85);
+    text-decoration: none;
+}
+.graph-nav-tab-inner, .graph-nav-tab-right{
+    float:left;
+    margin: 1px 0 0 1px;
+    width: 33%;
+    height: 24px;
+    color: white;
+    padding-top: 6px;
+    text-decoration: none;
+}
+.graph-nav-tab-inner:hover, .graph-nav-tab-right:hover, .graph-nav-tab-inner.active, .graph-nav-tab-right.active{
+    margin: 0 0 0 1px;
+    width: 33%;
+    height: 25px;
+    padding-top: 7px;
+    background-color: white;
+    color: rgb(50, 111, 85);
+    text-decoration: none;
+}
