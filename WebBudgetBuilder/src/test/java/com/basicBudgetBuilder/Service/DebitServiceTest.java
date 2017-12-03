@@ -1,9 +1,8 @@
 package com.basicBudgetBuilder.Service;
 
-import com.basicBudgetBuilder.domain.Category;
-import com.basicBudgetBuilder.domain.Role;
-import com.basicBudgetBuilder.domain.User;
+import com.basicBudgetBuilder.domain.*;
 import com.basicBudgetBuilder.exceptions.BasicBudgetBuilderException;
+import com.basicBudgetBuilder.repository.BudgetRepository;
 import com.basicBudgetBuilder.repository.CategoryRepository;
 import com.basicBudgetBuilder.repository.DebitRepository;
 import com.basicBudgetBuilder.representation.DebitRep;
@@ -40,11 +39,21 @@ public class DebitServiceTest {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private BudgetRepository budgetRepository;
+
     private User user = null;
+    private Category category = null;
+    private Category category0 = null;
+    private Category category1 = null;
+    private Category category2 = null;
+    private Category category3 = null;
+    private Category category4 = null;
+    private Category category5 = null;
 
     @Before
     public void setup()throws Exception {
-
+        removeAll();
         String email = "email";
         String password = "password";
         String name = "name";
@@ -52,22 +61,34 @@ public class DebitServiceTest {
         if(user == null) {
             user = new User(email, password, Role.USER, name);
             userService.save(user);
-//            Category category = new Category("Uncategorized", "#555555", user);
-            Category category0 = new Category("Green", "#00FF00", user);
-            Category category1 = new Category("Red", "#FF0000", user);
-            Category category2 = new Category("White", "#fCFfFc", user);
-            Category category3 = new Category("Blue", "#0000FF", user);
-            Category category4 = new Category("Gold", "#FFFF11", user);
-            Category category5 = new Category("Magenta", "#FF01FF", user);
-//            categoryRepository.save(category);
-            categoryRepository.save(category0);
-            categoryRepository.save(category1);
-            categoryRepository.save(category2);
-            categoryRepository.save(category3);
-            categoryRepository.save(category4);
-            categoryRepository.save(category5);
         }
-
+        if(categoryRepository.findByNameAndUser("Uncategorized", user) == null) {
+            category = new Category("Uncategorized", "#555555", user);
+            categoryRepository.save(category);
+        }
+        category0 = new Category("Green", "#00FF00", user);
+        category1 = new Category("Red", "#FF0000", user);
+        category2 = new Category("White", "#fCFfFc", user);
+        category3 = new Category("Blue", "#0000FF", user);
+        category4 = new Category("Gold", "#FFFF11", user);
+        category5 = new Category("Magenta", "#FF01FF", user);
+        categoryRepository.save(category0);
+        categoryRepository.save(category1);
+        categoryRepository.save(category2);
+        categoryRepository.save(category3);
+        categoryRepository.save(category4);
+        categoryRepository.save(category5);
+    }
+    private void removeAll() throws BasicBudgetBuilderException{
+        for (Debit d : debitRepository.findAll()) {
+            debitRepository.delete(d.getId());
+        }
+        for (Budget b : budgetRepository.findAll()) {
+            budgetRepository.delete(b.getId());
+        }
+        for (Category c : categoryRepository.findAll()) {
+            categoryRepository.delete(c.getId());
+        }
     }
     @Test
     public void addTest() throws BasicBudgetBuilderException {
@@ -103,31 +124,38 @@ public class DebitServiceTest {
         Assert.assertTrue(debitRep3.getCategoryId() > 0);
         Assert.assertTrue(debitRep3.getUserId() > 0);
 
+        // Add a group of Debit entries
+        DebitRep debitRep4 = new DebitRep("Blue", "#0000FF", "It's Blue",
+                BigDecimal.valueOf(412.22), "2017-11-14");
+        debitService.create(debitRep4, user);
+
+        // successful edit of an entry
+        DebitRep debitRep5 = new DebitRep("Gold", "#FFFF11", "It's not Yellow",
+                BigDecimal.valueOf(962.30), "2017-10-12");
+        debitRep5.setId(debitRep.getId());
+        debitService.edit(debitRep5, user);
+
+        // create and delete an entry
+        DebitRep debitRep6 = new DebitRep("Green", "#00FF00", "It's Green",
+                BigDecimal.valueOf(141.2), "2017-12-14");
+        debitRep6 = debitService.create(debitRep6, user);
+        Assert.assertTrue(debitService.delete(debitRep6.getId()));
+        Assert.assertNull(debitRepository.findById(debitRep6.getId()));
+
+        //verify all creates are in database
+        List<DebitRep> debitReps= debitService.getByCategories(user, null);
+        Assert.assertEquals(5, debitReps.size());
     }
     @Test(expected=BasicBudgetBuilderException.class)
     public void addTestExceptions()throws BasicBudgetBuilderException {
 
         DebitRep debitRep = new DebitRep("White", "#fCFfFc", "It's White",
-                null, "2017-12-14");
+                BigDecimal.valueOf(0), "2017-12-14");
         debitService.create(debitRep, user);
-    }
-
-    @Test
-    public void editTest() throws BasicBudgetBuilderException {
-        // Add a group of Debit entries
-        DebitRep debitRep = new DebitRep("Blue", "#0000FF", "It's Blue",
-                BigDecimal.valueOf(412.22), "2017-11-14");
-        debitService.create(debitRep, user);
-
-        // successful edit of an entry
-        DebitRep debitRep1 = new DebitRep("Gold", "#FFFF11", "It's not Yellow",
-                BigDecimal.valueOf(962.30), "2017-10-12");
-        debitRep1.setId(debitRep.getId());
-        debitService.edit(debitRep1, user);
-
     }
     @Test(expected=BasicBudgetBuilderException.class)
     public void editTestExceptions()throws BasicBudgetBuilderException {
+
         // Add a group of Debit entries
         DebitRep debitRep = new DebitRep("Magenta", "#FF01FF", "It's Magenta",
                 BigDecimal.valueOf(1275.34), "2018-08-14");
@@ -138,20 +166,5 @@ public class DebitServiceTest {
                 BigDecimal.valueOf(0), "2017-12-14");
         debitRep1.setId(debitRep.getId());
         debitService.edit(debitRep1, user);
-    }
-
-    @Test
-    public void getAllTest() throws BasicBudgetBuilderException {
-        List<DebitRep> debitReps= debitService.getByCategories(user, null);
-        Assert.assertEquals(5, debitReps.size());
-    }
-
-    @Test
-    public void deleteTest() throws BasicBudgetBuilderException {
-        DebitRep debitRep = new DebitRep("Green", "#00FF00", "It's Green",
-                BigDecimal.valueOf(141.2), "2017-12-14");
-        debitRep = debitService.create(debitRep, user);
-        Assert.assertTrue(debitService.delete(debitRep.getId()));
-        Assert.assertNull(debitRepository.findById(debitRep.getId()));
     }
 }

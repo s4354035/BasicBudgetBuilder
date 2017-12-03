@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
+	<groupId>com.basicBudgetBuilder</groupId>
 	<artifactId>INFS3202</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>INFS3202</name>
-	<description>Demo project for Spring Boot</description>
+	<description>INFS3202 project 2017</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -26,11 +26,12 @@
 		<angularjs.version>1.5.0</angularjs.version>
 		<angularuirouter.version>0.2.0</angularuirouter.version>
 		<bootstrap.version>3.3.6</bootstrap.version>
-		<!--<kendoui.version>2014.2.716</kendoui.version>-->
 		<chartjs.version>2.4.0</chartjs.version>
 		<angularChart.version>1.1.1</angularChart.version>
 		<angularUIBootstrap.version>1.3.3</angularUIBootstrap.version>
 		<angularTranslate.version>2.13.1</angularTranslate.version>
+		<dependency.locations.enabled>false</dependency.locations.enabled>
+		<start-class>com.basicBudgetBuilder.WebApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -42,13 +43,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -59,37 +58,31 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-support</artifactId>
 			<version>2.0.6</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>3.2.0.RELEASE</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.12</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -103,6 +96,13 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.4.0</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -134,41 +134,16 @@
 			<artifactId>angular-chart.js</artifactId>
 			<version>${angularChart.version}</version>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.webjars</groupId>-->
-			<!--<artifactId>kendo-ui-core</artifactId>-->
-			<!--<version>${kendoui.version}</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-orm</artifactId>
 			<version>5.7.0.Final</version>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.webjars</groupId>-->
-			<!--<artifactId>angularjs</artifactId>-->
-			<!--<version>${angularjs.version}</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>angular-translate</artifactId>
 			<version>${angularTranslate.version}</version>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.webjars.bower</groupId>-->
-			<!--<artifactId>angular-touch</artifactId>-->
-			<!--<version>${angularjs.version}</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.webjars</groupId>-->
-			<!--<artifactId>angular-animate</artifactId>-->
-			<!--&lt;!&ndash;<version>${angularjs.version}</version>&ndash;&gt;-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.webjars</groupId>-->
-			<!--<artifactId>kendo-ui-core</artifactId>-->
-			<!--<version>${kendoui.version}</version>-->
-		<!--</dependency>-->
 	</dependencies>
 
 	<build>
@@ -269,25 +244,8 @@
 						<artifactId>angular-translate</artifactId>
 						<version>${angularTranslate.version}</version>
 					</dependency>
-					<!--<dependency>-->
-						<!--<groupId>org.webjars</groupId>-->
-						<!--<artifactId>angular-touch</artifactId>-->
-						<!--&lt;!&ndash;<version>${angularjs.version}</version>&ndash;&gt;-->
-					<!--</dependency>-->
-					<!--<dependency>-->
-						<!--<groupId>org.webjars</groupId>-->
-						<!--<artifactId>angular-animate</artifactId>-->
-						<!--&lt;!&ndash;<version>${angularjs.version}</version>&ndash;&gt;-->
-					<!--</dependency>-->
-					<!--<dependency>-->
-						<!--<groupId>org.webjars</groupId>-->
-						<!--<artifactId>kendo-ui-core</artifactId>-->
-						<!--<version>${kendoui.version}</version>-->
-					<!--</dependency>-->
 				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

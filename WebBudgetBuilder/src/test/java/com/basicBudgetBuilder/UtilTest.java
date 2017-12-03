@@ -18,8 +18,6 @@ public class UtilTest {
             int[] days = DateUtil.getIntervalRestDays(interval);
             System.out.println(interval + ": " + days[0] + "  " + days[1]);
         }
-
-
         DateUtil.getSixFirstDateForInterval();
     }
 }
